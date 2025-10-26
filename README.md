@@ -15,23 +15,24 @@ Load balancing: HAProxy handles query distribution and failover.
 Ready-to-run lab setup: Example configuration for 3 nodes.
 
 🏗 Updated Architecture
-         ```text
-           +---------------------+
-           |   HAProxy / ProxySQL|
-           | Load Balancer / LB  |
-           | 192.168.220.150     |
-           +----------+----------+
-                      |
-     +----------------+----------------+
-     |                |                |
-     v                v                v
-+--------+       +--------+       +--------+
-| db1    |       | db2    |       | db3    |
-|192.168 |       |192.168 |       |192.168 |
-|220.143 |       |220.144 |       |220.145 |
-+--------+       +--------+       +--------+
-       \           |           /
-        \ Synchronous Replication /
+
+              +---------------------+
+       | HAProxy / ProxySQL |
+       | Load Balancer / LB |
+       | 192.168.220.150    |
+       +----------+----------+
+                  |
+    +-------------+-------------+
+    |             |             |
+    v             v             v
++--------+    +--------+    +--------+
+| db1    |    | db2    |    | db3    |
+|192.168 |    |192.168 |    |192.168 |
+|220.143 |    |220.144 |    |220.145 |
++--------+    +--------+    +--------+
+     \           |           /
+      \ Synchronous Replication /
+
 
 
 Each node is equal in the cluster; there is no single point of failure for writes.
